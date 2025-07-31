@@ -27,8 +27,6 @@ namespace API.Controllers
 
             return member;
         }
-//
 
-    
     }
 }
