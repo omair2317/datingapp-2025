@@ -27,5 +27,16 @@ namespace API.Controllers
 
             return member;
         }
+
+
+        [HttpGet("{id}")] //localhost:5143/pi/members/bob-id
+        public async Task<ActionResult<AppUser>> GetMember1(string id)
+        {
+            var member = await context.Users.FindAsync(id);
+
+            if (member == null) return NotFound();
+
+            return member;
+        }
     }
 }
