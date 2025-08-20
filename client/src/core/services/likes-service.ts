@@ -16,15 +16,25 @@ export class LikesService {
     return this.http.post(`${this.baseUrl}likes/${targetMemberId}`, {});
   }
 
-  getLikes(predicate: string, pageNumber: number, pageSize: number) {
-    let params = new HttpParams();
-    
-    params = params.append('pagNumber', pageNumber);
-    params = params.append('pageSize', pageSize);
-    params = params.append('predicate', predicate);
+//  getLikes(predicate: string, pageNumber: number, pageSize: number) {
+//    let params = new HttpParams();
+//    
+//    params = params.append('pageNumber', pageNumber);
+//    params = params.append('pageSize', pageSize);
+//    params = params.append('predicate', predicate);
 
-    return this.http.get<PaginatedResult<Member>>(this.baseUrl + 'likes' + {params});
-  }
+//    return this.http.get<PaginatedResult<Member>>(this.baseUrl + 'likes' + {params});
+//  }
+
+getLikes(predicate: string, pageNumber: number, pageSize: number) {
+  let params = new HttpParams()
+    .set('pageNumber', pageNumber)
+    .set('pageSize', pageSize)
+    .set('predicate', predicate);
+
+  return this.http.get<PaginatedResult<Member>>(this.baseUrl + 'likes', { params });
+}
+
 
   getLikeIds() {
     return this.http.get<string[]>(this.baseUrl + 'likes/list').subscribe({
